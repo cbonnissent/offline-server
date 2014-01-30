@@ -774,6 +774,7 @@ class DomainSyncApi
                         $message = $this->callHook("onAfterSaveDocument", $waitDoc->getRefererDocument() , $eExtra);
                         $out[$waitDoc->refererinitid]["saveInfo"]->onAfterSaveDocument = $message;
                         if ($eExtra->changeState) {
+                            $refererDocument = $waitDoc->getRefererDocument();
                             $message = $this->afterSaveChangeState($refererDocument, $eExtra->changeState);
                             $out[$waitDoc->refererinitid]["saveInfo"]->onAfterSaveChangeState = $message;
                         }
