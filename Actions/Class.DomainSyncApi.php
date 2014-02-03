@@ -833,7 +833,9 @@ class DomainSyncApi
                         "status",
                         "statusmessage"
                     ));
-                    $waitDoc->getRefererDocument()->addHistoryEntry(sprintf(_("synchro: %s") , $waitDoc->statusmessage) , HISTO_ERROR);
+                    if ($waitDoc->getRefererDocument()) {
+                        $waitDoc->getRefererDocument()->addHistoryEntry(sprintf(_("synchro: %s"), $waitDoc->statusmessage), HISTO_ERROR);
+                    }
                 }
             }
         }
