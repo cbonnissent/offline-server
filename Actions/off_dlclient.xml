@@ -5,18 +5,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 [CSS:REF]
 [JS:REF]
+<script type="text/javascript" src="lib/jquery/jquery.js?wv=[WVERSION]"></script>
 </head>
 
 <body id="body" onload="filterClientByOs()" class="fr"> 
   
-  <div class="header"></div> 
+  <div class="off-dl-header">Dynacase Offline : [TEXT:OFFLINE:access list of clients to download]</div> 
   
   <div class="page"> 
     
     <div class="left-block"><!-- block dynacase --> 
       
       <div id="apropos"> 
-	<div class="intro">&rarr; about</div> 
 	<div class="en"> 
 	  <p>All rights reserved under the granted license by <a class="anakeen" href="http://www.anakeen.com" target="_blank">Anakeen</a>.</p> 
           <p>The enterprise edition is guaranteed and allows access to corrective patch on private repository.</p> 
@@ -36,41 +36,62 @@
     
     <div class="right-block"><!-- block dynacase --> 
       
-      <div id="hello"><!-- block hello --> 
+      <div class="off-dl-main"><!-- block hello --> 
 	
-	<div id="header"> 
-	  <div class="title"> Dynacase Offline</div> 
-	  <div class="content">[TEXT:OFFLINE:consult and modify your documents when your Dynacase server is unreachable].</div> 
-	  <div class="version">
-	    <div class="content">Version [version]</div> 
-	    Build ID [buildid]</div> 
-	</div> 
+	<div class="off-dl-welcome">[TEXT:OFFLINE:Hello] [userRealName],<br/>[TEXT:OFFLINE:you can dowload here the Offline client for your platform].</div>
 	
-	<div id="welcome">[TEXT:OFFLINE:Hello] [userRealName],</br>[TEXT:OFFLINE:you can dowload here the Offline client for your platform].</div>
-	
-	<div class="description"></div> 
-	
-	<div class="links"> 
-	  <ul id="dl_list">
-	    [BLOCK DL_LIST]
-	    <li class="[DL_OS] [DL_ARCH]"><img src="Images/[DL_ICON]"/><a href="[CORE_EXTERNURL]?app=OFFLINE&action=OFF_DLCLIENT&os=[DL_OS]&arch=[DL_ARCH]">[DL_TITLE]</a></li>
-	    [ENDBLOCK DL_LIST]
-	  </ul>
+      </div>
 
-	  <a id="bt-filter" href="#" onclick="unfilterClientByOs()">[TEXT:OFFLINE:view all versions]</a>
-
-	</div> 
-	<div class="clear"> </div> 
+      <div class="os-list">
 	
-      </div><!-- block hello --> 
+	<div class="os-list-col win">
+	  
+	  <div class="os-type"><img src="Images/icon-win.png"/>Windows</div>
+	  <div class="os-dl-list">
+	    [BLOCK DL_LIST_WIN]
+	    <a href="[CORE_EXTERNURL]?app=OFFLINE&action=OFF_DLCLIENT&os=[DL_OS]&arch=[DL_ARCH]">[DL_TITLE]</a>
+	    [ENDBLOCK DL_LIST_WIN]
+	  </div>
+	  
+	</div>
+	
+	<div class="os-list-col mac">
+	  
+	  <div class="os-type"><img src="Images/icon-mac.png"/> Mac OS X</div>
+	  <div class="os-dl-list">
+	    [BLOCK DL_LIST_MAC]
+	    <a href="[CORE_EXTERNURL]?app=OFFLINE&action=OFF_DLCLIENT&os=[DL_OS]&arch=[DL_ARCH]">[DL_TITLE]</a>
+	    [ENDBLOCK DL_LIST_MAC]
+	  </div>
+	  
+	</div>
+	
+	<div class="os-list-col linux">
+	  <div class="os-type"><img src="Images/icon-linux.png"/> Linux</div>
+	  <div class="os-dl-list">
+	    [BLOCK DL_LIST_LINUX]
+	    <a href="[CORE_EXTERNURL]?app=OFFLINE&action=OFF_DLCLIENT&os=[DL_OS]&arch=[DL_ARCH]">[DL_TITLE]</a>
+	    [ENDBLOCK DL_LIST_LINUX]
+	  </div>
+	</div>
+	
+	<div class="clear"></div> 
+
+     </div>
       
+     <div class="off-dl-description">
+       <div>
+	 <span class="title"> Dynacase Offline</span> [TEXT:OFFLINE:consult and modify your documents when your Dynacase server is unreachable].
+       </div> 
+       <div>Version  <span class="version">[version]</span>  (build id [buildid])</div> 
+     </div> 
+	
+     
     </div><!-- block right --> 
     
     <div class="clear"></div> 
     
   </div><!-- page  --> 
-  
-  
   
   <div id="footer"> 
     <div class="copy">&copy; 2010-[thisyear] <a href="http://www.anakeen.com" target="_blank">Anakeen</a>.</div> 

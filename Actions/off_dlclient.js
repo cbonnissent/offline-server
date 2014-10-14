@@ -16,34 +16,18 @@ function getClientOs() {
 }
 
 function filterClientByOs() {
-  var os = getClientOs();
-  if( os == "unknown" ) {
-    return unfilterClientByOs();
-  }
-  var ul = document.getElementById('dl_list');
-  for( var i = 0; i < ul.childNodes.length; i++ ) {
-    node = ul.childNodes[i];
-    if( node.nodeName != 'LI' ) {
-      continue;
+    var os = getClientOs();
+    $(".os-list-col").removeClass('pre-selected');
+
+    if( os == "unknown" ) {
+	return;
     }
-    if( node.className.indexOf(os) != -1 ) {
-      node.style.display = 'block';
-      node.className = 'preselected';
-   } else {
-      node.style.display = 'none';
-      node.className = '';
-    }
-  }
+    
+    $("."+os).each( function() {
+	$(this).addClass('pre-selected');
+	console.log($(this));
+    });
+
+
 }
 
-function unfilterClientByOs() {
-  var ul = document.getElementById('dl_list');
-  for( var i = 0; i < ul.childNodes.length; i++ ) {
-    node = ul.childNodes[i];
-    if( node.nodeName != 'LI' ) {
-      continue;
-    }
-    node.style.display = 'block';
-  }
-  document.getElementById('bt-filter').style.display = 'none';
-}
