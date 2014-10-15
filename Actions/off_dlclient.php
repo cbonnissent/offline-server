@@ -64,7 +64,10 @@ function off_dlclient(\Action & $action)
         if (!is_file($file)) {
             continue;
         }
-        $dl_list[] = array(
+
+        if (!isset($dl_list[$spec['os']])) $dl_list[$spec['os']] = array();
+
+        $dl_list[$spec['os']][] = array(
             'DL_OS' => htmlspecialchars($spec['os']) ,
             'DL_ARCH' => htmlspecialchars($spec['arch']) ,
             'DL_TITLE' => htmlspecialchars($spec['title']) ,
@@ -73,7 +76,9 @@ function off_dlclient(\Action & $action)
     }
     unset($spec);
     
-    $action->lay->setBlockData('DL_LIST', $dl_list);
+    $action->lay->setBlockData('DL_LIST_WIN', $dl_list['win']);
+    $action->lay->setBlockData('DL_LIST_MAC', $dl_list['mac']);
+    $action->lay->setBlockData('DL_LIST_LINUX', $dl_list['linux']);
     
     return null;
 }
