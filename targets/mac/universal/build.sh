@@ -59,11 +59,17 @@ function _main {
 
     _prepare_xulapp "$APP/Contents/Resources"
 
-    mkdir -p "$APP/Contents/Frameworks"
-    tar -C "$XULRUNTIMES_DIR/$BUILD_OS/$BUILD_ARCH" -cf - "XUL.framework" | tar -C "$APP/Contents/Frameworks" -xf -
-
     mkdir -p "$APP/Contents/MacOS"
-    cp "$APP/Contents/Frameworks/XUL.framework/Versions/Current/xulrunner" "$APP/Contents/MacOS/xulrunner"
+    tar -C "$XULRUNTIMES_DIR/$BUILD_OS/$BUILD_ARCH/XUL.framework/Versions/Current/" -cf - . | tar -C "$APP/Contents/MacOS/" -xf -
+
+    mv "$APP/Contents/MacOS/xulrunner" "$APP/Contents/MacOS/xulrunner-bin"
+    cat <<'EOF' > "$APP/Contents/MacOS/xulrunner"
+#!/bin/bash
+DIR=$(dirname "$0")
+DIR=$(cd "$DIR" && pwd)
+exec "$DIR/xulrunner-bin" "$DIR/../Resources/application.ini"
+EOF
+    chmod a+x "$APP/Contents/MacOS/xulrunner"
 
     _make_mar "$APP"
 
