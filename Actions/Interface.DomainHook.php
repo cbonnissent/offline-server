@@ -83,6 +83,16 @@ interface DomainHook {
      * @param \Dcp\Family\OfflineDomain $domain the current domain document
      * @return void
      */
+
+    /**
+     * call before save document to reorganize the documentlist
+     *
+     * @param \Dcp\Family\OfflineDomain $domain the current domain document
+     * @param Array $documentList List of waiting document
+     * @return void
+     */
+    public function reorganizeDocuments(\Dcp\Family\OfflineDomain & $domain, array & $documentList);
+
     public function onAfterPushTransaction(\Dcp\Family\OfflineDomain & $domain);
     /**
      * call before record document which waiting after a push request
@@ -110,4 +120,6 @@ interface DomainHook {
      * @return void
      */
     public function onAfterSaveTransaction(\Dcp\Family\OfflineDomain & $domain);
+
+
 }

@@ -591,7 +591,7 @@ class DomainSyncApi
      * @param \stdClass $out
      * @return string
      */
-    private function verifyAllConflict(\DbObjectList & $waitings, &$out)
+    private function verifyAllConflict(& $waitings, &$out)
     {
         $err = '';
         $out = new \stdClass();
@@ -703,7 +703,15 @@ class DomainSyncApi
         if ($config->transaction) {
             $out = new \stdClass();
             $err = '';
-            $waitings = \DocWaitManager::getWaitingDocs($config->transaction);
+            $waitingsList = \DocWaitManager::getWaitingDocs($config->transaction);
+
+            $waitings = array();
+
+            foreach($waitingsList as $k => $currentWaiting) {
+                $waitings[$k] = clone $currentWaiting;
+            }
+
+            $this->callHook("reorganizeDocuments", $waitings);
             
             $policy = $this->domain->getRawValue(OfflineDomainAttributes::off_transactionpolicy);
             if ($policy == "global") {
